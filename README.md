@@ -65,7 +65,7 @@ Fist update your npm-package: `$ npm i -g npm`
 - install cordova: `$ npm i -g cordova`
 
 Checkout the code from AM-Gitlab. You will get the URL and the credentials, from the PO or
-the CTO (Alex Rückert: alexander.rueckert@aurora.com)
+the CTO.
 
 `$ git clone [GITLAB URL]`
 
