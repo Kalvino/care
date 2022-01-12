@@ -1,0 +1,36 @@
+<ion-list lines="none" class="menu-list">
+  <ion-item [routerDirection]="'root'"
+            [routerLink]="['/home']">
+    <ion-icon slot="start" [name]="'home'"></ion-icon>
+    <ion-label>{{'Dashboard' | translate}}</ion-label>
+  </ion-item>
+
+  <ion-item [routerDirection]="'root'"
+            [routerLink]="[item.url]"
+            (click)="onCloseMenu()"
+            *ngFor="let item of menuItems">
+    <ion-icon slot="start" [name]="item.icon"></ion-icon>
+    <ion-label>{{item.name | translate}}</ion-label>
+  </ion-item>
+
+  <ion-item (click)="onConfirmLogout()" id="confirmLogout">
+    <care-icon slot="start" [name]="'care-logout'"></care-icon>
+    <ion-label>{{'AUTH.LOGOUT' | translate}}</ion-label>
+  </ion-item>
+
+  <ion-item [routerDirection]="'root'"
+            [routerLink]="['/home']"
+            slot="bottom" class="legal-link">
+    <care-icon slot="start" [name]="'care-legal'"></care-icon>
+    <ion-label>{{'Legal Information' | translate}}</ion-label>
+  </ion-item>
+</ion-list>
+
+
+
+
+
+
+
+
+

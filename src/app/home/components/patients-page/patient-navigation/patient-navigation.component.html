@@ -1,0 +1,50 @@
+<!--Status, Configuration, History, Dashboard and Edit -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" #ionFab>
+
+  <ion-fab-button (click)="toggleBackdrop()">
+    <ion-icon [name]="'arrow-dropup'"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="top">
+
+    <div class="btn-wrap" *ngIf="isAdmin">
+      <ion-label class="fab-label">{{'PATIENTS.FAB.Edit' | translate}}</ion-label>
+      <ion-fab-button (click)="onGoto('edit')" title="{{'PATIENTS.FAB.Edit' | translate}}">
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <div class="btn-wrap">
+      <ion-label class="fab-label">{{'PATIENTS.FAB.History' | translate }}</ion-label>
+      <ion-fab-button (click)="onGoto('history')" title="{{'PATIENTS.FAB.History' | translate }}">
+        <ion-icon name="list"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <div class="btn-wrap">
+      <ion-label class="fab-label">{{'PATIENTS.FAB.Status' | translate}}</ion-label>
+      <ion-fab-button (click)="onGoto('status')" title="{{'PATIENTS.FAB.Status' | translate}}">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <div class="btn-wrap">
+      <ion-label class="fab-label">{{'PATIENTS.FAB.Settings' | translate}}</ion-label>
+      <ion-fab-button (click)="onGoto('configuration')" title="{{'PATIENTS.FAB.Settings' | translate}}">
+        <ion-icon name="build"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <div class="btn-wrap">
+      <ion-label class="fab-label">{{'PATIENTS.FAB.Profile' | translate}}</ion-label>
+      <ion-fab-button (click)="onGoto('patient')" title="{{'PATIENTS.FAB.Profile' | translate}}">
+        <ion-icon name="person"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+  </ion-fab-list>
+</ion-fab>
+
+<div class="backdrop"
+     [ngClass]="{'hidden': hideBackdrop}"
+     (click)="onBackdropClicked()"></div>

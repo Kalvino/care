@@ -1,0 +1,22 @@
+<care-header [title]="'PATIENTS.PATIENT_HISTORY'" [showBack]="true"></care-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="onUpdateHistory($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="{{'Pull to refresh' | translate}}"
+      refreshingSpinner="circles"
+      refreshingText="{{'Refreshing...' | translate}}">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf=" !(pending$ | async) && (events$ | async)?.length == 0">
+    {{'NO_DATA' | translate}}
+  </div>
+
+  <div *ngIf=" !(pending$ | async) && (events$ | async)?.length > 0">
+    <care-patient-event-list [events]="events$ | async"></care-patient-event-list>
+  </div>
+
+</ion-content>

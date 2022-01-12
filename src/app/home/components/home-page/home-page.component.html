@@ -1,0 +1,19 @@
+<care-header [title]="'Dashboard'"></care-header>
+
+<ion-content>
+  <ion-card *ngFor="let item of menuItems" button href  mode="md" >
+      <ion-card-header class="center">
+          <ion-card-title text-center class="title">{{item.name | translate}}</ion-card-title>
+        </ion-card-header>
+    <ion-card-content text-center class="icon-circle-wrap">
+      <ion-icon class="dashboard-icon" [name]="item.icon" slot="start" size="large"></ion-icon>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="onCheckDevice()"
+      title="{{'DEVICES.ADD_DEVICE' | translate}}">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

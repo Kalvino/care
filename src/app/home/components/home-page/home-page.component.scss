@@ -1,0 +1,20 @@
+
+.icon-circle-wrap {
+    width: 100px;
+    height: 100px;
+    color: var(--care-light-blue);
+    border: 1px solid rgb(0, 161, 225);
+    background: transparent;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    border-radius: 50%;
+    margin: 0 auto 1em;
+    padding: auto;
+    .dashboard-icon{
+        font-size: 60px; /* 64, originally 60 */
+        color: var(--care-darkgreen)
+    }
+  }
+  .title{
+    color: var(--care-darkgreen)
+  }

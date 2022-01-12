@@ -1,0 +1,37 @@
+<form [formGroup]="registerForm" (submit)="onSubmit()">
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label color="primary">{{'REGISTER.USERNAME' | translate}}</ion-label>
+      <ion-input fromControlName="username"
+                 placeholder="{{'REGISTER.USERNAME' | translate}}"
+                 required=""></ion-input>
+    </ion-item>
+    <care-required-message [form]="registerForm" [field]="'username'"></care-required-message>
+
+    <ion-item>
+      <ion-label color="primary">{{'REGISTER.EMAIL' | translate}}</ion-label>
+      <ion-input fromControlName="email"
+                 placeholder="{{'REGISTER.EMAIL' | translate}}"
+                 required=""></ion-input>
+    </ion-item>
+    <care-required-message [form]="registerForm" [field]="'email'"></care-required-message>
+
+    <ion-item>
+      <ion-label color="primary">{{'REGISTER.PASSWORD' | translate}}</ion-label>
+      <ion-input fromControlName="password"
+                 placeholder="{{'REGISTER.PASSWORD' | translate}}"
+                 required=""></ion-input>
+    </ion-item>
+    <care-required-message [form]="registerForm" [field]="'password'"></care-required-message>
+
+    <ion-item>
+      <ion-label color="primary">{{'REGISTER.PASSWORD_REPEAT' | translate}}</ion-label>
+      <ion-input formControlName="password_repeat"
+                 placeholder="{{'REGISTER.PASSWORD_REPEAT' | translate}}"
+                 required=""></ion-input>
+    </ion-item>
+    <care-required-message [form]="registerForm" [field]="'password_repeat'"></care-required-message>
+    <care-pw-not-identical-message [form]="registerForm"></care-pw-not-identical-message>
+
+  </ion-list>
+</form>

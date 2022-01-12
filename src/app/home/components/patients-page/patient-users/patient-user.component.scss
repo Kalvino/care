@@ -1,0 +1,39 @@
+:host {
+  width: 100%;
+  .user-list-item {
+    display: flex;
+    padding: .75rem 0;
+    width: 100%;
+
+    .small-dummy-image {
+      flex: 1;
+      width: 2rem;
+      height: 2rem;
+      display: inline-block;
+      border: 1px solid var(--ion-color-medium);
+      border-radius: 3px;
+      background: url('/assets/svg/md-person.svg');
+    }
+
+    .small-image-wrapper {
+      display: inline-block;
+      width: 50px;
+      height: auto;
+    }
+
+    .user-image {
+      align-self: center;
+    }
+
+    .user-details {
+      margin-left: 1rem;
+      display: block;
+      width: 100%;
+    }
+
+    .row {
+      display: block;
+      width: 100%;
+    }
+  }
+}

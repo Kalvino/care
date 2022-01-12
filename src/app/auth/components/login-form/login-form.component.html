@@ -1,0 +1,43 @@
+<script src="login-form.component.ts"></script>
+<form [formGroup]="form" id="loginForm" (submit)="onSubmit()" (keydown.enter)="onSubmit()">
+  <p class="errorMessage">{{"Prototype - not for patient use" | translate}}</p>
+  <p *ngIf="errorMessage" class="errorMessage">
+    {{errorMessage | translate}}
+  </p>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label color="primary" [position]="'floating'">
+        {{'AUTH.USERNAME' | translate}}
+      </ion-label>
+      <ion-input name="userName"
+                 id="userName"
+                 formControlName="userName"
+                 required></ion-input>
+    </ion-item>
+    <care-required-message [form]="form"
+                           [field]="'userName'"></care-required-message>
+
+    <ion-item>
+      <ion-label color="primary" [position]="'floating'">
+        {{'AUTH.PASSWORD' | translate}}
+      </ion-label>
+      <ion-input name="password"
+                 id="password"
+                 formControlName="password"
+                 required
+                 type="password"></ion-input>
+    </ion-item>
+    <care-required-message [form]="form"
+                           [field]="'password'"></care-required-message>
+
+  </ion-list>
+  <p>
+    <ion-button
+      [disabled]="!form.valid"
+      class="login-button"
+      color="primary"
+      expand="full"
+      type="submit">{{'AUTH.LOGIN' | translate}}
+    </ion-button>
+  </p>
+</form>

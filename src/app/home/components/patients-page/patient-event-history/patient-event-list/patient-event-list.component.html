@@ -1,0 +1,77 @@
+<div id="tab-nav">
+  <ul>
+    <li [ngClass]="{'active': tabIndex == 1}">
+      <a class="tab-link" (click)="setTabIndex(1)">
+        {{'CRITICAL' | translate}}
+      </a>
+    </li>
+    <li [ngClass]="{'active': tabIndex == 2}">
+      <a class="tab-link" (click)="setTabIndex(2)">
+        {{'ALL' | translate}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="tab-group">
+
+  <!-- TAB 1 -->
+  <div id="tab1" class="tab" [ngClass]="{'active': tabIndex == 1}">
+    <div *ngIf="criticalEvents().length == 0">
+      {{'NO_DATA' | translate}}
+    </div>
+    <div *ngIf="criticalEvents().length > 0">
+      <ion-list>
+        <ion-item *ngFor="let event of criticalEvents()">
+          <div class="patient-history-item">
+
+            <div class="history-icon">
+              <div class="event-icon {{isCritical(event)}}">
+                <care-icon [name]="mapIcon(event)"></care-icon>
+              </div>
+            </div>
+
+            <div class="history-event">
+              {{event.eventtype.name | lowercase | translate}}
+              <!--<span class="row text-muted">Accepted: Monika Huber</span>-->
+            </div>
+
+            <div class="history-date {{isCritical(event)}}">
+              {{event.event_created_at | addUtcTz | dateOrTime }}
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div id="tab2" class="tab" [ngClass]="{'active': tabIndex == 2}">
+    <div *ngIf="events.length == 0">
+      {{'NO_DATA' | translate}}
+    </div>
+
+    <div *ngIf="events.length > 0">
+      <ion-list>
+        <ion-item *ngFor="let event of events">
+          <div class="patient-history-item">
+
+            <div class="history-icon">
+              <div class="event-icon {{isCritical(event)}}">
+                <care-icon [name]="mapIcon(event)"></care-icon>
+              </div>
+            </div>
+
+            <div class="history-event">
+              <span class="row">{{event.eventtype.name | lowercase | translate}}</span>
+              <!--<span class="row text-muted">Accepted: Monika Huber</span>-->
+            </div>
+
+            <div class="history-date {{isCritical(event)}}">
+              {{event.event_created_at | addUtcTz | dateOrTime }}
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</div>

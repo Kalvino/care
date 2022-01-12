@@ -1,0 +1,16 @@
+<care-header [title]="'PATIENTS.CONFIGURATION.PositionTracking'" [showBack]="true"></care-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{'PATIENTS.CONFIGURATION.ActivatePositionTracking' | translate}}</ion-label>
+      <ion-toggle
+        (ionChange)="presentAlertConfirm()"
+        [(ngModel)]="configuration.active_tracking.active"
+        color="primary" slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <div class="p16">
+    <p>{{'PATIENTS.CONFIGURATION.POSITION_TRACKING_TEXT' | translate}}</p>
+  </div>
+</ion-content>

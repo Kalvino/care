@@ -1,0 +1,36 @@
+<care-header [title]="'PATIENTS.CONFIGURATION.VirtualZones'" [showBack]="true"></care-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{'PATIENTS.CONFIGURATION.ActivateVirtualZones' | translate}}</ion-label>
+      <ion-toggle
+        [(ngModel)]="configuration.geofencing.active"
+        color="primary" slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item (click)="navigateTo()">
+      <div>Zone: Zu Hause</div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="df aic">
+        <i class="fs20pt care-darkgreen icon icon-care-add-filled"></i>
+        <span class="ml16 care-darkgreen">
+              {{'Add Zone' | translate}}
+            </span>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div class="p16">
+    <p>{{'PATIENTS.CONFIGURATION.VIRTUAL_ZONES_TEXT_P1' | translate}}</p>
+    <p>{{'PATIENTS.CONFIGURATION.VIRTUAL_ZONES_TEXT_P2' | translate}}</p>
+    <p>{{'PATIENTS.CONFIGURATION.VIRTUAL_ZONES_TEXT_P3' | translate}}</p>
+  </div>
+</ion-content>

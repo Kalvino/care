@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'Sarabun';
+  src:url("sarabun-regular.eot");
+  src: url("sarabun-regular.woff") format("woff"),
+  url("sarabun-regular.woff2") format("woff2"),
+  url("sarabun-regular.ttf") format("truetype"),
+  url("sarabun-regular.svg#Sarabun") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sarabun bold';
+  src:url("sarabun-500.eot");
+  src: url("sarabun-500.woff") format("woff"),
+  url("sarabun-500.woff2") format("woff2"),
+  url("sarabun-500.ttf") format("truetype"),
+  url("sarabun-500.svg#Sarabun") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sarabun italic';
+  src:url("sarabun-italic.eot");
+  src: url("sarabun-italic.woff") format("woff"),
+  url("sarabun-italic.woff2") format("woff2"),
+  url("sarabun-italic.ttf") format("truetype"),
+  url("sarabun-italic.svg#Sarabun") format("svg");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sarabun bold 500italic';
+  src:url("sarabun-500italic.eot");
+  src: url("sarabun-500italic.woff") format("woff"),
+  url("sarabun-500italic.woff2") format("woff2"),
+  url("sarabun-500italic.ttf") format("truetype"),
+  url("sarabun-500italic.svg#Sarabun") format("svg");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "care";
+  src:url("care.eot");
+  src:url("care.eot?#iefix") format("embedded-opentype"),
+    url("care.woff") format("woff"),
+    url("care.ttf") format("truetype"),
+    url("care.svg#care") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "care" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "care" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-care-arrow-left:before {
+  content: "\61";
+}
+.icon-ami-tick-circle:before {
+  content: "\61";
+}
+.icon-omi-menu-burger:before {
+  content: "\62";
+}
+.icon-ami-x:before {
+  content: "\63";
+}
+.icon-ami-tick:before {
+  content: "\66";
+}
+.icon-ami-delete:before {
+  content: "\65";
+}
+.icon-ami-info-circle:before {
+  content: "\67";
+}
+.icon-ami-edit-pencil:before {
+  content: "\30";
+}
+.icon-ami-minus-circle:before {
+  content: "\71";
+}
+.icon-ami-user-card:before {
+  content: "\72";
+}
+.icon-ami-user-male-circle:before {
+  content: "\34";
+}
+.icon-ami-move-item:before {
+  content: "\74";
+}
+.icon-ami-dots-vertical:before {
+  content: "\75";
+}
+.icon-ami-plus-circle:before {
+  content: "\76";
+}
+.icon-ami-photo-gallery:before {
+  content: "\77";
+}
+.icon-ami-photocam:before {
+  content: "\78";
+}
+.icon-care-phone:before {
+  content: "\79";
+}
+.icon-care-alarm:before {
+  content: "\7a";
+}
+.icon-ami-qr-code:before {
+  content: "\41";
+}
+.icon-ami-search:before {
+  content: "\42";
+}
+.icon-ami-envelope:before {
+  content: "\43";
+}
+.icon-omi-gear:before {
+  content: "\37";
+}
+.icon-care-fall:before {
+  content: "\31";
+}
+.icon-care-geofencing:before {
+  content: "\33";
+}
+.icon-care-legal:before {
+  content: "\4a";
+}
+.icon-care-logout:before {
+  content: "\4b";
+}
+.icon-care-period:before {
+  content: "\4c";
+}
+.icon-care-ulcera:before {
+  content: "\32";
+}
+.icon-care-sensor-status:before {
+  content: "\36";
+}
+.icon-care-sensor-gross:before {
+  content: "\73";
+}
+.icon-care-phone-filled:before {
+  content: "\4d";
+}
+.icon-care-add-filled:before {
+  content: "\64";
+}
+.icon-care-arrow-down:before {
+  content: "\39";
+}
+.icon-care-arrow-left:before {
+  content: "\47";
+}
+.icon-care-arrow-right:before {
+  content: "\48";
+}
+.icon-care-arrow-up:before {
+  content: "\49";
+}
+.icon-care-delete-filled:before {
+  content: "\46";
+}
+.icon-care-edit:before {
+  content: "\70";
+}
+.icon-care-female:before {
+  content: "\4f";
+}
+.icon-care-female-filled:before {
+  content: "\44";
+}
+.icon-care-history:before {
+  content: "\35";
+}
+.icon-care-arrow-left-big:before {
+  content: "\6a";
+}
+.icon-care-arrow-right-big:before {
+  content: "\69";
+}
+.icon-care-add-small-filled:before {
+  content: "\68";
+}
+.icon-ami-adress-pin:before {
+  content: "\6b";
+}
+.icon-care-position:before {
+  content: "\6c";
+}
+.icon-care:before {
+  content: "\6e";
+}

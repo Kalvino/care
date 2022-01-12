@@ -1,0 +1,13 @@
+<care-header [title]="'DEVICES.DEVICES_LIST'"></care-header>
+
+<ion-content padding>
+  <ion-list [lines]="'full'" *ngIf="devices.length > 0">
+    <ion-item *ngFor="let device of devices">
+      {{device.id}} | {{device.serial_no}}
+    </ion-item>
+  </ion-list>
+
+  <p *ngIf="devices.length == 0">
+    {{'NO_DATA' | translate}}
+  </p>
+</ion-content>

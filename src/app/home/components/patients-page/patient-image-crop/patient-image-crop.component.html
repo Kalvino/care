@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()" title="{{'CANCEL_CHANGES' | translate}}">
+        <ion-icon [name]="'close'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{'PATIENTS.EDIT_PHOTO' | translate}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onAccept()" title="{{'ACCEPT_CHANGES' | translate}}">
+        <ion-icon [name]="'checkmark'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <image-cropper
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    [resizeToWidth]="500"
+    [imageBase64]="cameraImage"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+  ></image-cropper>
+
+</ion-content>

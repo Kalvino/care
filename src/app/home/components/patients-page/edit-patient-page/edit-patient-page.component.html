@@ -1,0 +1,148 @@
+<ion-header>
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()" [disabled]="(isPending$ | async)">
+        <ion-icon [name]="'close'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{'PATIENTS.EDIT_PATIENT' | translate}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()"
+                  [disabled]="editPatientForm.invalid || !editPatientForm.dirty || (isPending$ | async)">
+        <ion-icon [name]="'checkmark'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="patient-details-header pt16">
+    <ion-grid class="p16">
+      <ion-row>
+        <ion-col size="4">
+          <care-patient-image
+            [patient]="patient"
+            [imageSrc]="patient.image"></care-patient-image>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="onEditImage()"
+                      class="btn-unstyled float-right"
+                      fill="clear">
+            <div class="care-blue df aic">
+              <i class="icon icon-care-edit"></i>
+              <div>{{'Edit image' | translate}}</div>
+            </div>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <form [formGroup]="editPatientForm" (submit)="onSubmit()">
+    <p *ngIf="errors$ | async" class="errorMessage">
+      <span *ngFor="let error of (errors$ | async)">
+        {{error | translate}}
+      </span>
+    </p>
+
+    <ion-list lines="full">
+      <ion-list-header>{{'General' | translate}}</ion-list-header>
+
+      <ion-item>
+        <ion-label [position]="'floating'">
+          {{'FIRSTNAME' | translate}}
+        </ion-label>
+        <ion-input [formControlName]="'firstname'" required></ion-input>
+      </ion-item>
+      <care-required-message [field]="'firstname'" [form]="editPatientForm"></care-required-message>
+
+      <ion-item>
+        <ion-label [position]="'floating'">
+          {{'LASTNAME' | translate}}
+        </ion-label>
+        <ion-input [formControlName]="'lastname'" required></ion-input>
+      </ion-item>
+      <care-required-message [field]="'lastname'" [form]="editPatientForm"></care-required-message>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'ADDRESS' | translate}}</ion-label>
+        <ion-input value="Geldspeicherstr. 1, 12345 Entenhausen"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'NOTES' | translate}}</ion-label>
+        <ion-textarea value="Patient weight: 55kg
+Patient height: 165cm">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-list-header>{{'Primary Emergency Contact' | translate}}</ion-list-header>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'LABEL' | translate}}</ion-label>
+        <ion-input value="Retirement Home"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'NAME' | translate}}</ion-label>
+        <ion-input value="St. Vincent"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'ADDRESS' | translate}}</ion-label>
+        <ion-input value="Schnabelstr. 5, 12345 Entenhausen"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'PHONE' | translate}}</ion-label>
+        <ion-input value="089 1234567"></ion-input>
+      </ion-item>
+
+      <ion-list-header>{{'Contact' | translate}}</ion-list-header>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'LABEL' | translate}}</ion-label>
+        <ion-input value="Daughter"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'NAME' | translate}}</ion-label>
+        <ion-input value="Daisy Duck"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'ADDRESS' | translate}}</ion-label>
+        <ion-input value="Gänsestr. 5, 12345 Entenhausen"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label [position]="'floating'">{{'PHONE' | translate}}</ion-label>
+        <ion-input value="089 7654321"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button (click)="onAddContact()"
+                    class="btn-unstyled fs16pt"
+                    fill="clear">
+          <div class="df aic">
+            <i class="care-darkgreen icon icon-care-add-filled"></i>
+            <span class="ml16 care-darkgreen">
+              {{'Add Contact' | translate}}
+            </span>
+          </div>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-fab [hidden]="!isAdmin()"
+           [horizontal]="'end'"
+           [vertical]="'bottom'" slot="fixed">
+    <ion-fab-button (click)="router.navigate(['patients', 'details', 'users'])">
+      <ion-icon [name]="'people'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

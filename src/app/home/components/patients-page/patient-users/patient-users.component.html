@@ -1,0 +1,52 @@
+<care-header [title]="'PATIENTS.USERS'" [showBack]="true"></care-header>
+
+<ion-content padding>
+
+  <p *ngIf="errors$ | async" class="errorMessage">
+      <span *ngFor="let error of (errors$ | async)">
+        {{error | translate}}
+      </span>
+  </p>
+
+  <p *ngIf="(patientUsers$ | async)?.length == 0">
+    {{'PATIENTS.NO_OTHER_USERS' | translate}}
+  </p>
+
+  <div *ngIf="(patientUsers$ | async)?.length > 0">
+    <ion-list [lines]="'full'">
+      <ion-item *ngFor="let user of (patientUsers$ | async)">
+        <div class="user-list-item">
+          <div class="user-image" slot="start">
+            <div *ngIf="!user.image">
+              <div class="small-dummy-image" [title]="user.lastname"></div>
+            </div>
+            <div *ngIf="user.image">
+              <div class="small-image-wrapper">
+                <img [src]="user.image" class="small-image" [title]="user.lastname"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="user-details">
+            <span class="row">{{user.firstname}} {{user.lastname}}</span>
+            <span class="row small"
+                  *ngIf="user.user_patient_permission === adminPermission">{{'PATIENTS.IS_ADMIN' | translate}}</span>
+            <span class="row small"
+                  *ngIf="user.user_patient_permission === readonlyPermission">{{'PATIENTS.READ_ONLY' | translate}}</span>
+          </div>
+
+          <div slot="end">
+            <div *ngIf="isAdmin()">
+              <ion-button (click)="onDeleteUser(user)"
+                          [color]="'danger'"
+                          [fill]="'clear'">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

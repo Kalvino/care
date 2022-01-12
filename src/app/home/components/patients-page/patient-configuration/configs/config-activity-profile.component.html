@@ -1,0 +1,16 @@
+<care-header [title]="'PATIENTS.CONFIGURATION.Protocol'" [showBack]="true"></care-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{'PATIENTS.CONFIGURATION.ActivateProtocol' | translate}}</ion-label>
+      <ion-toggle
+        [(ngModel)]="configuration.activity_profile.active"
+        color="primary" slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <div class="p16">
+    <p>{{'PATIENTS.CONFIGURATION._PROTOCOL_TEXT_P1' | translate}}</p>
+    <p>{{'PATIENTS.CONFIGURATION._PROTOCOL_TEXT_P2' | translate}}</p>
+  </div>
+</ion-content>

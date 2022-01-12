@@ -1,0 +1,25 @@
+<care-header [title]="'PATIENTS.CONFIGURATION.Geo Zone'" [showBack]="true"></care-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{'Activate' | translate}}</ion-label>
+      <ion-toggle checked
+                  color="primary"
+                  slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Checking interval' | translate}}</ion-label>
+      <ion-select cancelText="{{'CANCEL' | translate}}"
+                  okText="{{'OK' | translate}}">
+        <ion-select-option>15 min</ion-select-option>
+        <ion-select-option>30 min</ion-select-option>
+        <ion-select-option>60 min</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div class="p16">
+    <div id="map" style="width: 380px; height: 500px"></div>
+  </div>
+</ion-content>

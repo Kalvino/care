@@ -1,0 +1,55 @@
+<care-header [title]="'PATIENTS.CONFIGURATION.FallAlarm'" [showBack]="true"></care-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>{{'PATIENTS.CONFIGURATION.ActivateFallAlarm' | translate}}</ion-label>
+            <ion-toggle
+                    [(ngModel)]="configuration.fall_detection.active"
+                    color="primary" slot="end"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+    <div *ngIf="configuration.fall_detection.active">
+        <p class="p16">{{'PATIENTS.CONFIGURATION.FALL_DETECTION_TEXT' | translate}}</p>
+        <ion-list>
+
+            <ion-item>
+                <ion-label>{{'PATIENTS.CONFIGURATION.Alarm on every fall event' | translate}}</ion-label>
+                <ion-toggle
+                        [(ngModel)]="configuration.fall_detection.always"
+                        color="primary" slot="end"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>{{'PATIENTS.CONFIGURATION.Alarm only when lying down' | translate}}</ion-label>
+                <ion-toggle
+                        [(ngModel)]="configuration.fall_detection.laying"
+                        color="primary" slot="end"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>{{'PATIENTS.CONFIGURATION.Alarm only when lying down' | translate}}</ion-label>
+                <ion-toggle
+                        [(ngModel)]="configuration.fall_detection.inactive"
+                        color="primary" slot="end"></ion-toggle>
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <div class="p16">
+        <p>{{'PATIENTS.CONFIGURATION.FALL_DETECTION_TEXT_P1' | translate}}</p>
+        <p>
+            Sie können einstellen, ob Sie</p>
+        <ul>
+            <li>über alle Stürze informiert werden möchten,</li>
+            <li>nur über Stürze informiert werden möchten, nach denen die gestürzte Person liegen bleibt und nicht
+                wieder aufstehen kann (2 Minuten),
+            </li>
+            <li>nur über Stürze informiert werden möchten, nach denen die Person regungslos liegen bleibt und sich nicht
+                mehr selbst helfen kann.
+            </li>
+        </ul>
+
+    </div>
+</ion-content>

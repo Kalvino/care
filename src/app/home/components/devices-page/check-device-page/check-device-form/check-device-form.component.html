@@ -1,0 +1,23 @@
+<form [formGroup]="newCodeForm" (submit)="onSubmit()">
+  <p *ngIf="errorMessage" class="errorMessage">
+    {{errorMessage | translate}}
+  </p>
+
+  <ion-list [lines]="'full'">
+    <ion-item>
+      <ion-label color="primary" [position]="'floating'">{{'DEVICES.DEVICE_CODE' | translate}}</ion-label>
+      <ion-input formControlName="code" required></ion-input>
+    </ion-item>
+    <care-required-message [form]="newCodeForm"
+                           [field]="'code'"></care-required-message>
+  </ion-list>
+
+  <p>
+    <ion-button
+      [disabled]="!newCodeForm.valid"
+      color="primary"
+      expand="full"
+      type="submit">{{'ADD' | translate}}
+    </ion-button>
+  </p>
+</form>

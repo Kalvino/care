@@ -1,0 +1,146 @@
+:host {
+
+  h5 {
+    font-weight: bold;
+    color: var(--ion-color-primary);
+    margin-bottom: .1rem;
+  }
+
+  p {
+    margin-top: .1rem;
+  }
+
+  .patient-details {
+    padding: 15px;
+    position: relative;
+    box-shadow: var(--care-neutrallightgrey) 0px 1px 4px;
+    padding-bottom: 5px;
+  }
+
+  .patient-details-header {
+    margin-bottom: 15px;
+    h1 {
+      margin: 0 0 .25em 0;
+    }
+    .address{
+      color: var(--care-grey);
+    }
+  }
+
+  .patient-details-body {
+    .label {
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .sq-btns-wrapper{
+    padding-top: 100%;
+    position: relative;
+    opacity: 100%;
+    .normalize{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      .button{
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        &:hover {
+          background-color: var(--care-lightest-blue);
+          color: var(--care-lighter-blue);
+          p{
+            i.icon{
+              color: var(--care-light-blue);
+            }
+          }
+        }
+
+        &.activated{
+          background-color: var(--care-lightest-blue);
+          color: var(--care-lighter-blue);
+          p{
+            i.icon{
+              color: var(--care-light-blue);
+            }
+          }
+        }
+        &.deactivated{
+          border: 1px solid var(--care-lines);
+          color: var(--care-light-grey);
+          p{
+            i.icon{
+              color: var(--care-light-grey);
+            }
+          }
+        }
+
+        .critical-badge{
+          position: absolute;
+          left: 50%;
+          top: 2em;
+        }
+        
+        p{
+          font-size: 1.0625rem;
+          text-decoration: none;
+          display: block;
+          width: 100%;
+          align-items: center;
+
+          i.icon {
+            font-size: 2rem;
+            line-height: 1.5rem;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    .normalize-tl{
+      padding: 0 5px 10px 0;
+    }
+    .normalize-tr{
+      padding: 0 0 10px 5px;
+    }
+    .normalize-bl{
+      padding: 0 5px 10px 0;
+    }
+    .normalize-br{
+      padding: 0 0 10px 5px;
+    }
+  }
+
+  .patient-details-navigation{
+    margin-top: 4px;
+
+    a {
+      color: var(--care-darkgrey);
+      font-size: 1.0625rem;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+
+      i.icon {
+        margin-right: 1rem;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        vertical-align: middle;
+      }
+    }
+
+    .navi-indicator {
+      i {
+        font-size: 1.5rem;
+        color: var(--care-grey);
+      }
+    }
+  }
+}

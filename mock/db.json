@@ -1,0 +1,196 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstname": "John",
+      "lastname": "Doe",
+      "username": "jdoe",
+      "password": "123",
+      "email": "johdoe@somewhere.com",
+      "phone": "+49 123 123456",
+      "gender": "m",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "firstname": "Martha",
+      "lastname": "Smith",
+      "username": "msmith",
+      "email": "m.smith@anywhere.com",
+      "password": "123",
+      "phone": "+49 898 321567",
+      "gender": "f",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "firstname": "Monika",
+      "lastname": "Maier",
+      "username": "mmaier",
+      "email": "m.maier@anywhere.com",
+      "password": "123",
+      "phone": "+49 898 321567",
+      "gender": "f",
+      "image": ""
+    }
+  ],
+  "patients": [
+    {
+      "devices_id": 1,
+      "firstname": "Sabine",
+      "gender": "f",
+      "id": 1,
+      "lastname": "Schmidt",
+      "phone": "+49 555 557898",
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "firstname": "Hans",
+      "lastname": "Meiser",
+      "phone": "+49 998 41259785",
+      "gender": "m",
+      "user_id": 2,
+      "device_id": 2
+    },
+    {
+      "id": 3,
+      "firstname": "Markus",
+      "lastname": "Mueller",
+      "phone": "+49 9982 1124661",
+      "gender": "m",
+      "device_id": 3,
+      "user_id": 2
+    },
+    {
+      "firstname": "Sabine",
+      "lastname": "Schmitt",
+      "gender": "f",
+      "phone": "",
+      "device_id": 4,
+      "user_id": 1,
+      "id": 4
+    },
+    {
+      "firstname": "Helmut",
+      "lastname": "Kohl",
+      "gender": "m",
+      "phone": "444",
+      "device_id": 4,
+      "user_id": 1,
+      "id": 5
+    },
+    {
+      "firstname": "Jane",
+      "lastname": "Smith",
+      "gender": "f",
+      "phone": "",
+      "device_id": 4,
+      "user_id": 1,
+      "id": 6
+    }
+  ],
+  "devices": [
+    {
+      "id": 1,
+      "admin_code": "123",
+      "serial_no": "xcvb123fgsdf",
+      "model_no": 1,
+      "readonly_code": "321"
+    },
+    {
+      "id": 2,
+      "admin_code": "234",
+      "serial_no": "xcvb356sfhgs",
+      "model_no": 1,
+      "readonly_code": "432"
+    },
+    {
+      "id": 3,
+      "admin_code": "345",
+      "model_no": 1,
+      "serial_no": "xasdf87877gx",
+      "readonly_code": "543"
+    },
+    {
+      "id": 4,
+      "admin_code": "456",
+      "model_no": 1,
+      "serial_no": "jitnuoi15gf5",
+      "readonly_code": "654"
+    },
+    {
+      "id": 5,
+      "admin_code": "678",
+      "model_no": 1,
+      "serial_no": "jitnuoi15gf5",
+      "readonly_code": "876"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "raw_event_from_sensor": "001_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 1,
+      "device_id": "1"
+    },
+    {
+      "id": 2,
+      "raw_event_from_sensor": "002_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 2,
+      "device_id": "1"
+    },
+    {
+      "id": 1,
+      "raw_event_from_sensor": "001_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 1,
+      "device_id": "2"
+    },
+    {
+      "id": 2,
+      "raw_event_from_sensor": "002_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 2,
+      "device_id": "2"
+    },
+    {
+      "id": 1,
+      "raw_event_from_sensor": "001_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 1,
+      "device_id": "3"
+    },
+    {
+      "id": 2,
+      "raw_event_from_sensor": "002_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 2,
+      "device_id": "3"
+    },
+    {
+      "id": 1,
+      "raw_event_from_sensor": "001_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 1,
+      "device_id": "4"
+    },
+    {
+      "id": 2,
+      "raw_event_from_sensor": "002_e6575ec0-a21b-3aa9-8632-3db194a67465_1539093774",
+      "event_types_id": 2,
+      "device_id": "4"
+    }
+  ],
+  "event_types": [
+    {
+      "id": 1,
+      "code": "001",
+      "name": "fall detection"
+    },
+    {
+      "id": 2,
+      "code": "002",
+      "name": "carry control"
+    }
+  ],
+  "notifications": [
+    {"id":1, "event_id": 1, "user_id": 1, "device_id": 1, "status":0},
+    {"id":2, "event_id": 2, "user_id": 1, "device_id": 1, "status":0}
+  ]
+}

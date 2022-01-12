@@ -1,0 +1,20 @@
+:host {
+
+  border-bottom: 1px solid var(--care-lines);
+  padding-bottom: .9rem;
+
+  .menu-logo {
+    max-width: 70%;
+    padding: 1.5rem 0;
+    margin-left: 5pt;
+  }
+
+  .user-info {
+    margin-left: 16pt;
+
+    h1 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

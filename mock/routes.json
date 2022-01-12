@@ -1,0 +1,6 @@
+{
+  "/api/*": "/$1",
+  "/users/:id/patients": "/patients/?_embed=devices&user_id=:id",
+  "/devices/:id/events": "/events?_expand=event_types&device_id=:id",
+  "/users/id:/notifications": "/notifications/?user_id=:id&_expand=events"
+}

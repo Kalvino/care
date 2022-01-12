@@ -1,0 +1,72 @@
+<care-header [title]="'Settings'" [showBack]="true"></care-header>
+
+<ion-content>
+
+  <ion-list lines="full">
+
+    <ion-item (click)="navigateTo('ulcera')">
+      <div slot="start">
+        {{'PATIENTS.CONFIGURATION.Wound prevention' | translate}}
+      </div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="navigateTo('fall-prevention')">
+      <div slot="start">
+        {{'PATIENTS.CONFIGURATION.StandUpAlarm' | translate}}
+      </div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="navigateTo('fall-detection')">
+      <div slot="start">{{'PATIENTS.CONFIGURATION.FallAlarm' | translate}}</div>
+      <div slot="end"></div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="navigateTo('activity-profile')">
+      <div slot="start">{{'PATIENTS.CONFIGURATION.Protocol' | translate}}</div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="navigateTo('geofencing')">
+      <div slot="start">{{'PATIENTS.CONFIGURATION.VirtualZones' | translate}}</div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="navigateTo('active-tracking')">
+      <div slot="start">{{'PATIENTS.CONFIGURATION.PositionTracking' | translate}}</div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="navigateTo('wearing-control')">
+      <div slot="start">{{'PATIENTS.CONFIGURATION.Wearing control' | translate}}</div>
+      <div slot="end"></div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="navigateTo('battery-life')">
+      <div slot="start">{{'PATIENTS.CONFIGURATION.BatteryAlarm' | translate}}</div>
+      <div slot="end">{{'PATIENTS.CONFIGURATION.Active' | translate}}</div>
+      <div slot="end">
+        <care-icon class="text-muted fs28pt" [name]="'care-arrow-right'"></care-icon>
+      </div>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

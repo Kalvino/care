@@ -1,0 +1,8 @@
+<care-header [title]="'DEVICES.ADD_DEVICE'"></care-header>
+
+<ion-content padding>
+  <care-check-device-form
+    [errorMessage]="error$ | async"
+    [pending]="pending$ | async"
+    (submitted)="onFormSubmitted($event)"></care-check-device-form>
+</ion-content>

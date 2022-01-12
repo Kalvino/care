@@ -1,0 +1,97 @@
+:host {
+  .row {
+    display: block;
+    width: 100%;
+  }
+
+  .patient-history-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: .875em 0;
+
+    .history-icon {
+
+      .event-icon {
+        display: inline-block;
+        background-color: var(--care-blue);
+        border-radius: 15px;
+
+        &.critical {
+          background-color: var(--care-criticalred);
+        }
+
+        ::ng-deep {
+          care-icon {
+            span {
+              display: inline-block;
+              color: #fff;
+              width: 40px;
+              height: 40px;
+              font-size: 27px;
+              vertical-align: middle;
+              padding: 5px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    .history-event {
+      flex-grow: 2;
+      margin-left: 1em;
+    }
+
+    .history-date {
+      color: var(--care-grey);
+
+      &.critical {
+        color: var(--care-criticalred)
+      }
+    }
+  }
+
+  #tab-nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+
+    li {
+      display: inline-block;
+      flex: 1;
+      text-align: center;
+      padding: .875em 0;
+      background-color: rgba(1, 193, 208, .12);
+      border-bottom: 2px solid transparent;
+
+      a.tab-link {
+        color: var(--care-blue);
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+        text-transform: uppercase;
+        height: 100%;
+      }
+
+      &.active {
+        border-bottom: 2px solid var(--care-darkgrey);
+
+        a.tab-link {
+          color: var(--care-darkgreen);
+        }
+      }
+    }
+  }
+
+  .tab {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}

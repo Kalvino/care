@@ -1,0 +1,12 @@
+<care-header [title]="'PATIENTS.ADD_PATIENT'"></care-header>
+
+<ion-content padding>
+  <p *ngIf="!unassignedDevice">
+    {{'DEVICES.NO_DEVICE_SELECTED' | translate}}
+  </p>
+  <care-add-patient-form
+    *ngIf="unassignedDevice"
+    [errors]="errors$ | async"
+    [pending]="pending$ | async"
+    (submitted)="onFormSubmitted($event)"></care-add-patient-form>
+</ion-content>

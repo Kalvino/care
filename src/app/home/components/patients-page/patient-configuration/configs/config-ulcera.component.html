@@ -1,0 +1,32 @@
+<care-header [title]="'PATIENTS.CONFIGURATION.Wound prevention'" [showBack]="true"></care-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>{{'PATIENTS.CONFIGURATION.ActivateWoundPrevention' | translate}}</ion-label>
+      <ion-toggle
+        [(ngModel)]="configuration.wound_prevention.active"
+        color="primary"
+        slot="end"></ion-toggle>
+    </ion-item>
+
+    <ion-item *ngIf="configuration.wound_prevention.active">
+      <ion-label>
+        <i class="icon icon-care-period"></i>
+      </ion-label>
+      <ion-select
+        placeholder="{{'PATIENTS.CONFIGURATION.Select Interval' | translate}}"
+        [(ngModel)]="configuration.wound_prevention.interval"
+        cancelText="{{'CANCEL' | translate}}"
+        okText="{{'OK' | translate}}">
+        <ion-select-option *ngFor="let item of wound_prev_intervals" [value]="item.value">
+          {{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div class="p16">
+    <p>{{'PATIENTS.CONFIGURATION.WOUND_PREVENTION_P1' | translate}}</p>
+  </div>
+</ion-content>

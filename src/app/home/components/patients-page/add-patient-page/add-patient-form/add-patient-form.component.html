@@ -1,0 +1,46 @@
+<form [formGroup]="addPatientForm" (submit)="onSubmit()">
+  <p *ngIf="errors" class="errorMessage">
+    <span *ngFor="let error of errors">
+      {{error | translate}}
+    </span>
+  </p>
+
+  <ion-list [lines]="'full'">
+    <ion-item>
+      <ion-label [color]="'primary'" [position]="'floating'">
+        {{'FIRSTNAME' | translate}}
+      </ion-label>
+      <ion-input [formControlName]="'firstname'" required></ion-input>
+    </ion-item>
+    <care-required-message [field]="'firstname'" [form]="addPatientForm"></care-required-message>
+
+    <ion-item>
+      <ion-label [color]="'primary'" [position]="'floating'">
+        {{'LASTNAME' | translate}}
+      </ion-label>
+      <ion-input [formControlName]="'lastname'" required></ion-input>
+    </ion-item>
+    <care-required-message [field]="'lastname'" [form]="addPatientForm"></care-required-message>
+
+    <ion-item>
+      <ion-label [color]="'primary'" [position]="'floating'">
+        {{'GENDER' | translate}}
+      </ion-label>
+      <ion-select [formControlName]="'gender'"
+                  okText="{{'OK' | translate}}" cancelText="{{'CANCEL' | translate}}"
+                  placeholder="{{'GENDER' | translate}}">
+        <ion-select-option *ngFor="let item of selectGender" [value]="item.value">{{item.text | translate}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <p>
+    <ion-button
+      [disabled]="!addPatientForm.valid"
+      color="primary"
+      expand="full"
+      type="submit">{{'ADD' | translate}}
+    </ion-button>
+  </p>
+</form>

@@ -1,0 +1,46 @@
+<care-header [title]="'PATIENTS.CONFIGURATION.StandUpAlarm'" [showBack]="true"></care-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Aufstehalarm aktivieren</ion-label>
+      <ion-toggle
+              [(ngModel)]="configuration.fall_prevention.active"
+              color="primary"
+              slot="end"></ion-toggle>
+    </ion-item>
+
+    <ion-item *ngIf="configuration.fall_prevention.active">
+      <ion-label>{{'PATIENTS.CONFIGURATION.FullTime' | translate}}</ion-label>
+      <ion-toggle [(ngModel)]="configuration.fall_prevention.wholeDay"
+                  color="primary" slot="end"></ion-toggle>
+    </ion-item>
+
+    <ion-item *ngIf="configuration.fall_prevention.active">
+      <ion-label>{{'BEGIN' | translate}}</ion-label>
+      <ion-datetime cancelText="{{'CANCEL' | translate}}"
+                    doneText="{{'OK' | translate}}"
+                    placeholder="{{'START' | translate}}"
+                    [(ngModel)]="configuration.fall_prevention.start"
+                    [displayFormat]="'HH:mm'"
+                    [pickerFormat]="'HH:mm'"></ion-datetime>
+    </ion-item>
+
+    <ion-item *ngIf="configuration.fall_prevention.active">
+      <ion-label>{{'END' | translate}}</ion-label>
+      <ion-datetime cancelText="{{'CANCEL' | translate}}"
+                    doneText="{{'OK' | translate}}"
+                    [(ngModel)]="configuration.fall_prevention.end"
+                    placeholder="{{'END' | translate}}"
+                    [displayFormat]="'HH:mm'"
+                    [pickerFormat]="'HH:mm'"></ion-datetime>
+    </ion-item>
+
+  </ion-list>
+
+  <div class="p16">
+    <p>{{'PATIENTS.CONFIGURATION.FALL_PREV_TEXT_P1' | translate}}</p>
+    <p>{{'PATIENTS.CONFIGURATION.FALL_PREV_TEXT_P2' | translate}}</p>
+  </div>
+</ion-content>

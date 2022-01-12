@@ -1,0 +1,902 @@
+openapi: '3.0.1'
+info:
+  title: care Cloud API
+  description: care Cloud API description
+  version: 1.0.0
+  termsOfService: http://tbd.com
+  contact:
+    name: Philip Wunderlich
+    email: philipp.wunderlich@aurora.com
+  license:
+    name: Licence - TBD
+    url: TBD
+
+servers:
+- description: dev server
+  url: http://dev.my-aurora.com
+
+tags:
+- name: auth
+  description: Everything about Authentication
+  externalDocs:
+    description: Confluence TBD
+    url: http://tbd
+
+- name: users
+  description: Everything about Users
+  externalDocs:
+    description: Confluence TBD
+    url: http://tbd
+
+- name: devices
+  description: Everything about care Devices
+  externalDocs:
+    description: Confluence TBD
+    url: http://tbd
+
+- name: patients
+  description: Everything about Patients
+  externalDocs:
+    description: Confluence TBD
+    url: http://tbd
+
+- name: events
+  description: Everything about Events
+  externalDocs:
+    description: Confluence TBD
+    url: http://tbd
+
+- name: nursing homes
+  description: Everything about Nursing Homes
+  externalDocs:
+    description: Confluence TBD
+    url: http://tbd
+
+paths:
+  /api/users:
+    post:
+      tags:
+      - users
+      summary: Create a new user profile.
+      description: Create a new user profile.
+      operationId: userId
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+
+      responses:
+        '201':
+          description: User profile successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+        '422':
+          description: Missing mandatory fields | data already exists | rules violation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+    get:
+      tags:
+      - users
+      summary: Get a list of all user profiles.
+      description: Return a collection/list of all Users.
+
+      responses:
+        '200':
+          description: Successful retrieval of all user profiles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /api/users/{userId}:
+    get:
+      tags:
+      - users
+      summary: Get a specific user profile.
+      description: Retrieve a specific user profile.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+        description: The id of the user you want to get.
+
+      responses:
+        '200':
+          description: Successful retrieval of a single user profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /api/users/{userId}/patients:
+    'get':
+      tags:
+      - users
+      summary: Get a list of patients who belong to a particular user.
+      description: Get a list of patients who belong to the logged-in user.
+      parameters:
+      - in: path
+        name: userId
+        schema:
+          type: integer
+        required: true
+        description: The id of the user you want to get a list of patients for.
+
+      responses:
+        '200':
+          description: Successful retrieval of the users patient list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patient'
+
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /auth/login:
+    post:
+      tags:
+      - auth
+      summary: Log user into the system.
+      description: User login
+      # operationId: loginUser
+      requestBody:
+        description: A user needs valid credentials to login.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+
+      responses:
+        '200':
+          description: Successful login.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSucccessfulLogin'
+
+        '401':
+          description: When the wrong email and/or password is used.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+        '422':
+          description: Missing mandatory fields | data already exists | rules violation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /auth/logout:
+    get:
+      tags:
+      - auth
+      summary: Logout of the system
+      description: User logout
+
+      responses:
+        '200':
+          description: Successful logout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiSuccessResponse'
+
+  /api/devices:
+    post:
+      tags:
+      - devices
+      summary: "Create a new care device profile"
+      description: "Create a care device"
+      operationId: deviceId
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDevice'
+
+      responses:
+        '201':
+          description: care device profile successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+
+        '422':
+          description: Unprocessable Entity. Missing mandatory fields | data already exists | rules violation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+    get:
+      tags:
+      - devices
+      summary: Retrieve all care device profiles.
+      description: Get a list of all care devices.
+
+      responses:
+        '200':
+          description: Successfully retrieved a list of all care devices.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+
+  # get device by id
+  /api/devices/{deviceId}:
+    get:
+      tags:
+      - devices
+      summary: Get a specific care device profile.
+      description: Retrieve a particular care device profile.
+      parameters:
+      - in: path
+        name: deviceId
+        schema:
+          type: integer
+        required: true
+        description: The id of the device you want to get.
+
+      responses:
+        '200':
+          description: Successful retrieval of a single care device profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+
+        '404':
+          description: Device not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /api/devices/admincode/{adminCode}:
+    get:
+      tags:
+      - devices
+      summary: Check availablilty of a device
+      description: Check availablilty of a device and receive the data for a device
+      parameters:
+      - in: path
+        name: adminCode
+        schema:
+          type: string # int
+        required: true
+        description: The admin code of the device you want to retrieve
+
+      responses:
+        '200':
+          description: Successful retrieval of a single care device profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+
+        '404':
+          description: Device not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /api/devices/{deviceId}/eventlogs:
+    get:
+      tags:
+      - devices
+      summary: Get all events from the logs
+      description: Get all events from the logs for a given deviceId. Returns an array with log entries
+      parameters:
+      - in: path
+        name: deviceId
+        schema:
+          type: string #int
+        required: true
+        description: The device id of the device assigned to a patient
+      responses:
+        '200':
+          description: Successfull response returns all entries from the log, or empty array
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventLogResponse'
+        '404':
+          description: Device not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /api/patients:
+    post:
+      tags:
+      - patients
+      summary: "Create a new patient profile"
+      description: "Create a patient"
+      operationId: patientId
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePatient'
+
+      responses:
+        '201':
+          description: Patient profile successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+
+        '422':
+          description: Unprocessable Entity. Missing mandatory fields | data already exists | rules violation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+    get:
+      tags:
+      - patients
+      summary: Get a list of all patients
+      description: Get a list of all patients
+      responses:
+        '200':
+          description: Successful retrieval of all patient profiles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patient'
+
+  /api/patients/{patientId}:
+    get:
+      tags:
+      - patients
+      summary: Get a specific patient profile.
+      description: Retrieve a specific patient profile.
+      parameters:
+      - in: path
+        name: patientId
+        schema:
+          type: integer
+        required: true
+        description: The id of the patient you want to get.
+
+      responses:
+        '200':
+          description: Successful retrieval of a single patient profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /api/eventtypes:
+    get:
+      tags:
+      - events
+      summary: Get a list of all event types.
+      description: Return a collection/list of all event types.
+
+      responses:
+        '200':
+          description: Successful retrieval of all events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventType'
+
+  /api/eventlogs:
+    post:
+      tags:
+      - events
+      summary: Accept an event log from a care device into the care cloud
+      description: Post an event log from a care device into the care cloud
+      operationId: eventLog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventString'
+
+      responses:
+        '201':
+          description: Event from care device successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceEventLog'
+
+        '404':
+          description: Device and/or Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+        '500':
+          description: Integrity constraint violation. Trying to make duplicate entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /api/nursinghomes:
+    post:
+      tags:
+      - nursing homes
+      summary: Create a Nursing Home
+      description: Create a new Nursing Home
+      operationId: nursingHome
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNursingHome'
+
+      responses:
+        '201':
+          description: Nursing home successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NursingHome'
+
+        '422':
+          description: Unprocessable Entity. Missing mandatory fields | data already exists | rules violation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+    get:
+      tags:
+      - nursing homes
+      summary: Retrieve all Nursing Homes
+      description: Get all Nursing Homes
+
+      responses:
+        '200':
+          description: Successful retrieval of all user profiles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NursingHome'
+
+  /api/nursinghomes/{nursinghomeId}:
+    get:
+      tags:
+      - nursing homes
+      summary: Get a specific Nursing Home profile.
+      description: Retrieve a specific Nursing Home profile.
+      parameters:
+      - in: path
+        name: nursinghomeId
+        schema:
+          type: integer
+        required: true
+        description: The id of the Nursing Home you want to get.
+
+      responses:
+        '200':
+          description: Successful retrieval of a single patient profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NursingHome'
+
+        '404':
+          description: Nursing home not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+  /api/nursinghomes/{nursinghomeId}/users:
+    get:
+      tags:
+      - nursing homes
+      summary: Get a Nursing Homes users.
+      description: Retrieve all users who have been assigned to a nursing home.
+      parameters:
+      - in: path
+        name: nursinghomeId
+        schema:
+          type: integer
+        required: true
+        description: Id of the nursing home you want to get a list of users.
+
+      responses:
+        '200':
+          description: Successful retrieval of nursing home users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+        '404':
+          description: Nursing home not found or No users found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    # user model
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 66
+
+        username:
+          type: string
+          example: johndoe
+
+        email:
+          type: string
+          example: john.doe@anywhere.com
+
+        nursing_home_id:
+          type: integer
+          format: int64
+          example: 5
+
+    # create user model
+    CreateUser:
+      type: object
+      properties:
+        username:
+          type: string
+          example: johndoe
+
+        email:
+          type: string
+          example: john.doe@anywhere.com
+
+        password:
+          type: string
+          example: secret
+
+        nursing_home_key:
+          type: string
+          example: nursing_home_key
+
+    # user login model
+    UserLogin:
+      type: object
+      properties:
+        username:
+          type: string
+          example: username
+
+        password:
+          type: string
+          example: secret
+
+    # care device model
+    Device:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+
+        serial_no:
+          type: string
+          example: XXX6593
+
+        readonly_code:
+          type: string
+          example: XXX6593
+
+        administration_code:
+          type: string
+          example: XXX8668
+
+        model_no:
+          type: string
+          example: modelXXX
+
+        nursing_home_id:
+          type: integer
+          format: int64
+          example: 5
+
+    # create care device model
+    CreateDevice:
+      type: object
+      properties:
+        serial_no:
+          type: string
+          example: XXX6593
+
+        readonly_code:
+          type: string
+          example: XXX6593
+
+        administration_code:
+          type: string
+          example: XXX8668
+
+        model_no:
+          type: string
+          example: modelXXX
+
+        nursing_home_key:
+          type: string
+          example: nursing_home_key
+
+    # get device by admin code success response
+    DeviceAdminCode:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Device Available
+
+    # EventString
+    EventString:
+      type: object
+      properties:
+        raw_event_from_sensor:
+          type: string
+          example: 002_1238762386833_1537297843
+
+    # log definition
+    EventLog:
+      type: object
+      properties:
+        id:
+          type: number
+          format: int64
+        raw_event_from_sensor:
+          type: string
+        device_id:
+          type: number
+          format: int64
+        eventtype_id:
+          type: number
+          format: int64
+        event_created_at:
+          type: string
+          format: date-time
+
+    #EventLogResponse
+    EventLogResponse:
+      allOf:
+      - $ref: '#/components/schemas/EventLog'
+      - type: object
+        properties:
+          eventtype:
+            $ref: '#/components/schemas/EventType'
+
+    # get event log success response
+    DeviceEventLog:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Log Successfully Created
+
+    # user successful login response model
+    UserSucccessfulLogin:
+      type: object
+      properties:
+        access_token:
+          type: string
+
+        user:
+          $ref: '#/components/schemas/User'
+
+    # api Success Model
+    ApiSuccessResponse:
+      type: object
+      required:
+      - message
+        code
+      properties:
+        message:
+          type: string
+          example: Success message
+
+        code:
+          type: integer
+          format: int64
+          example: 200
+
+    # api Error Model
+    ApiErrorResponse:
+      type: object
+      required:
+      - error
+        code
+      properties:
+        error:
+          type: string
+          example: error message
+
+        code:
+          type: integer
+          format: int64
+          example: XXX
+
+    # patient model
+    Patient:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+
+        firstname:
+          type: string
+          example: John
+
+        lastname:
+          type: string
+          example: Doe
+
+        phone:
+          type: string
+          example: "+1 234 567890"
+
+        gender:
+          type: string
+          example: "m"
+
+        device_id:
+          type: integer
+          format: int64
+          example: 5
+
+        nursing_home_id:
+          type: integer
+          format: int64
+          example: 0
+
+    # create a patient model
+    CreatePatient:
+      type: object
+      properties:
+
+        firstname:
+          type: string
+          example: John
+
+        lastname:
+          type: string
+          example: Doe
+
+        phone:
+          type: string
+          example: "+1 234 567890"
+
+        gender:
+          type: string
+          example: "m"
+
+        admin_code:
+          type: string
+          example: 1d15c41a-e230-3bf9-8c2c-5ed62322b7ef
+
+    # event model
+    EventType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+
+        code:
+          type: string
+          example: "001"
+
+        name:
+          type: string
+          example: Fall Detection
+
+    # create nursing home model
+    CreateNursingHome:
+      type: object
+      properties:
+        key:
+          type: string
+          example: ABC001
+
+        name:
+          type: string
+          example: Nursing Home
+
+    # nursing home model
+    NursingHome:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+
+        key:
+          type: string
+          example: 2bfd49aa-b262-36fe-a1b3-5b32bbe3c5d1
+
+        name:
+          type: string
+          example: Nursing Home
+
+security:
+
+- bearerAuth: []
+
+externalDocs:
+  description: AM-Confluence
+  url: http://confluence.aurora..com

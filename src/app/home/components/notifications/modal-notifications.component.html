@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar [color]="'primary'">
+    <ion-title text-center>{{'NOTIFICATIONS.EVENTS' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalCtrl.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p *ngIf="error$ | async" class="errorMessage">
+    {{(error$|async) | translate}}
+  </p>
+
+  <h5 *ngIf="notifications?.length == 0">{{'NOTIFICATIONS.NO_EVENTS' | translate}}</h5>
+  <div id="event-details" *ngIf="notifications?.length > 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <img id="notification-map-image" src="/assets/img/tmp_images/care_location.png"/>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <div id="user-event-div">
+            <ion-row>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col size="9">
+                    <div class="df aic">
+                      <div>
+                        <care-patient-image
+                        [patient]="currentNotification?.patient"
+                        [imageSrc]="getImageLink()">
+                        </care-patient-image>
+                      </div>
+                      <div class="fg2 pl16">
+                        <span class="">{{currentNotification?.patient.firstname}} {{currentNotification?.patient.lastname}}</span><br>
+                        <span class="red alert">
+                          {{currentNotification?.headline_key | lowercase | translate}}
+                          <span class="red row small txt-normal">
+                            {{currentNotification?.event_created_at | addUtcTz | date: 'short'}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col text-center  size="3">
+                    <care-icon class="red row event-details-icon" [name]="iconName"></care-icon>
+                    <span class="row red alert event-time">{{currentNotification?.event_created_at | addUtcTz | dateOrTime}}</span>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <div>
+                  <span class="grey row">Scharrerstr. 32, 90478 Nuremberg</span>
+                  <span class="grey row">Zimmer 202, 2 OG.</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+      <div id="buttons-div">
+        <ion-row>
+          <ion-col id="left-reject" size="6" text-center *ngIf="currentNotification?.event">
+            <ion-button
+              block
+              id="reject"
+              class="event-buttons"
+              expand="full"
+              color="light"
+              [disabled]="!currentNotification || (pending$ | async)"
+              (click)="markAsRead()" >
+              {{'NOTIFICATIONS.I cannot' | translate}}
+            </ion-button>
+          </ion-col>
+          <ion-col id="right-accept" size="6" text-center *ngIf="currentNotification?.event">
+            <ion-button
+              block
+              id="take-over"
+              class="event-buttons"
+              color="primary"
+              expand="full"
+              [disabled]="!currentNotification || (pending$ | async)"
+              (click)="markAsRead()">
+              {{'NOTIFICATIONS.I take care' | translate}}
+            </ion-button>
+          </ion-col>
+          <ion-col size="12" text-center *ngIf="!currentNotification?.event">
+              <ion-button
+              [disabled]="!currentNotification || (pending$ | async)"
+              (click)="markAsRead()" color="success">
+              {{'OK' | translate}}
+            </ion-button>
+          </ion-col >
+        </ion-row>
+      </div>
+      <ion-row>
+          <ion-col text-center size="6" id="previous">
+            <ion-button (click)="prev()" color="light" [disabled]="!hasPrev()">
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col text-center size="6" id=next>
+            <ion-button (click)="next()" color="light" [disabled]="!hasNext()">
+              <ion-icon name="arrow-round-forward"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      <!-- <ion-row>
+        <ion-col>
+            <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="red">Anforderung 2 abgelehnt</h2>
+                    <h3 class="grey">von 2 Personen...</h3>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="red">Anforderung 1 abgelehnt</h2>
+                    <h3 class="grey">von 3 Personen...</h3>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+  </div>
+</ion-content>

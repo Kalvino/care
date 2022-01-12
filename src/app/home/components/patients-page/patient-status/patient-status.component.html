@@ -1,0 +1,60 @@
+<care-header [title]="'PATIENTS.SENSOR_STATUS'" [showBack]="true"></care-header>
+
+<ion-content>
+
+  <div class="status-header df aic p16 pt16 pb16">
+    <div class="font-image">
+      <care-icon [name]="'care-sensor-gross'"></care-icon>
+    </div>
+    <div class="ml16">
+      <p class="fs20pt m0 p0 care-darkgreen">{{'DEVICE' | translate}}: {{(patient$|async)?.device.serial_no}}</p>
+      <p class="m0 p0 text-muted">{{(patient$|async)?.firstname}} {{(patient$|async)?.lastname}}</p>
+    </div>
+  </div>
+
+  <div class="separator"></div>
+
+  <ion-list>
+    <ion-item>
+      <div class="df aic jcsb w100">
+        <div>{{'PATIENTS.STATUS.Last update' | translate}}</div>
+        <div class="ml8 text-muted">{{defaults.today | date: 'short'}}</div>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="df aic jcsb w100">
+        <div>{{'PATIENTS.STATUS.Sensor state' | translate}}</div>
+        <div class="text-muted"> {{defaults.active | translate | uppercase}}</div>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="df aic jcsb w100">
+        <div>{{'PATIENTS.STATUS.Wearing' | translate}}</div>
+        <div class="text-muted">{{defaults.wearing | translate | uppercase}}</div>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="df aic jcsb w100">
+        <div>{{'PATIENTS.STATUS.BatteryStatus' | translate}}</div>
+        <div class="text-muted">{{defaults.battery}}</div>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="df aic jcsb w100">
+        <div>{{'PATIENTS.STATUS.Firmware version' | translate}}</div>
+        <div class="text-muted">{{defaults.fm_version}}</div>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="df aic w100 jcsb">
+        <div>{{'PATIENTS.STATUS.App version' | translate}}</div>
+        <div class="text-muted">{{defaults.app_version}}</div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

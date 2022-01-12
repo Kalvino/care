@@ -1,0 +1,18 @@
+<care-header [title]="'PATIENTS.PATIENTS'"></care-header>
+
+<ion-content padding>
+
+    <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="{{'Pull to refresh' | translate}}"
+        refreshingSpinner="circles"
+        refreshingText="{{'Refreshing...' | translate}}">
+      </ion-refresher-content>
+    </ion-refresher>
+
+  <care-patients-list [patients]="patients$ | async" (selected)="onPatientSelected($event)"></care-patients-list>
+  <p *ngIf="!patients$ | async">
+    {{'NO_DATA' | translate}}
+  </p>
+</ion-content>

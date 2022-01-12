@@ -1,0 +1,147 @@
+<care-header [title]="'PATIENTS.PATIENT_DETAILS'" [showBack]="true">
+</care-header>
+
+<ion-content>
+  <p *ngIf="errors$ | async" class="errorMessage">
+      <span *ngFor="let error of (errors$ | async)">
+        {{error | translate}}
+      </span>
+  </p>
+  <div class="patient-details">
+    <div class="patient-details-header">
+      <div class="df aic">
+        <div>
+          <care-patient-image
+            [patient]="patient"
+            [imageSrc]="patient.image"></care-patient-image>
+        </div>
+        <div class="fg2 pl16">
+          <h1 class="fs20pt care-darkgreen">{{patient.firstName}} {{patient.lastName}}</h1>
+          <div>
+            <span class="row address">Geldspeicherstr. 2</span>
+            <span class="row address">12345 Entenhausen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-sm>
+          <div class="sq-btns-wrapper">
+            <div class="normalize normalize-tl">
+              <div class="button activated ion-text-center">
+                <p>
+                  <i class="icon icon-care-phone"></i><br>
+                  {{'EmergencyContact' | translate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <div class="sq-btns-wrapper">
+            <div class="normalize normalize-tr">
+              <div [routerLink]="'/patients/details/history'" class="button activated ion-text-center">
+                <ion-badge class="critical-badge" color="danger">1</ion-badge>
+                <p>
+                  <i class="icon icon-care-alarm"></i><br>
+                  {{'Alarms' | translate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <div class="sq-btns-wrapper">
+            <div class="normalize normalize-bl">
+              <div class="button deactivated ion-text-center">
+                <p>
+                  <i class="icon icon-care"></i><br>
+                  Mobilitäts-<br>protokoll
+                </p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <div class="sq-btns-wrapper">
+            <div class="normalize normalize-br">
+              <div class="button deactivated ion-text-center">
+                <p>
+                  <i class="icon icon-care-position"></i><br>
+                  Positions-<br>bestimmung
+                </p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="patient-details-navigation">
+    <div>
+      <ion-list>
+        <ion-item>
+          <div class="df aic w100">
+            <div class="fg2">
+              <a
+                [routerLink]="['/', 'patients', 'details', 'profile']"
+                [routerDirection]="'forward'"
+              >
+                <i class="icon icon-ami-user-male-circle"></i>
+                {{'Patient Profile' | translate}}
+              </a>
+            </div>
+            <div class="navi-indicator">
+              <i class="icon icon-care-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <div class="df aic w100">
+            <div class="fg2">
+              <a [routerLink]="['/', 'patients', 'details', 'history']">
+                <i class="icon icon-care-history"></i>
+                {{'History' | translate}}
+              </a>
+            </div>
+            <div class="navi-indicator">
+              <i class="icon icon-care-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <div class="df aic w100">
+            <div class="fg2">
+              <a [routerLink]="['/', 'patients', 'details', 'status']">
+                <i class="icon icon-care-sensor-status"></i>
+                {{'PATIENTS.SENSOR_STATUS' | translate}}
+              </a>
+            </div>
+            <div class="navi-indicator">
+              <i class="icon icon-care-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <div class="df aic w100">
+            <div class="fg2">
+              <a [routerLink]="['/', 'patients', 'details', 'configuration']">
+                <i class="icon icon-omi-gear"></i>
+                {{'Settings' | translate}}
+              </a>
+            </div>
+            <div class="navi-indicator">
+              <i class="icon icon-care-arrow-right"></i>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

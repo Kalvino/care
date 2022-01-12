@@ -1,0 +1,16 @@
+:host {
+  .patient-image-dummy {
+    display: inline-block;
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid var(--ion-color-medium);
+    border-radius: 4px;
+    box-shadow: .2rem .2rem .2rem var(--ion-color-medium-shade);
+    background: url('/svg/md-person.svg');
+  }
+
+  .patient-image {
+    width: 70px;
+    height: auto;
+  }
+}
